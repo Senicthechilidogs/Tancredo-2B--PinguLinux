@@ -1,9 +1,9 @@
 :root {
   --cinza: #aaa;
-  --vermelha: #e93d50;
-  --vermelha-escura: #af303f;
-  --branca: #fff;
-  --luz: rgb(229, 255, 0);
+  --vermelha: #500f6e;
+  --vermelha-escura: #94e4e4;
+  --branca: #f1eeff;
+  --luz: rgb(255, 36, 145);
 }
 
 body {
@@ -23,8 +23,8 @@ h1 {
 }
 
 .teclado {
-  background: linear-gradient(to bottom, #eeeeee 0%,#cccccc 100%);
-  box-shadow: 6px 8px 0 6px #666, 10px 10px 10px #000;
+  background: linear-gradient(to bottom, #7482d1 0%,#69969e 100%);
+  box-shadow: 6px 8px 0 6px #4b4072, 10px 10px 10px #a064ff;
   border-radius: 30px;
   display: grid;
   gap: 10px;
@@ -44,6 +44,38 @@ h1 {
   line-height: 120px;
   text-align: center;
   width: 120px;
+}function tocaSom (idElementoAudio) {
+  document.querySelector(idElementoAudio).play();
+}
+
+const listaDeTeclas = document.querySelectorAll('.tecla');
+
+
+for (let contador = 0; contador < listaDeTeclas.length; contador++) {
+
+  const tecla = listaDeTeclas[contador];
+
+  const instrumento = tecla.classList[1];
+
+  console.log(instrumento)
+
+  const idAudio = `#som_${instrumento}`;
+
+  tecla.onclick = function() {
+      tocaSom(idAudio);
+  }
+
+  tecla.onkeydown = function (evento) {
+      if (evento.code == 'Space' || evento.code === 'Enter'){
+            tecla.classList.add('ativa');
+      }
+    
+  }
+
+  tecla.onkeyup = function () {
+      tecla.classList.remove('ativa');
+  }
+
 }
 
 .tecla.ativa,
